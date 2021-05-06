@@ -1,6 +1,4 @@
 def update_dictionary(a_dictionary, key, value):
-    if a_dictionary is None:
-        dict([key, value])
-    else:
-        a_dictionary.update({key: value})
+    """Replaces or adds key/value pairs in a dictionary"""
+    a_dictionary[key] = value
     return a_dictionary
