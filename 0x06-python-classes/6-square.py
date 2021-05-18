@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+B#!/usr/bin/python3
 """Defines the square class"""
 
 
@@ -59,5 +59,5 @@ class Sqaure:
                 print()
             string = '#' * self.__size
             margin = ' ' * self.__position[0]
-            for i in range(self.__size):
+            for x in range(self.__size):
                 print(margin, string, sep="")
