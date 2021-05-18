@@ -4,5 +4,5 @@
 
 class Square:
     """Square Class that has private instance attribute:size"""
-    def __init___(self, sizevar):
-        self.__size = sizevar
+    def __init___(self, size):
+        self.__size = size
