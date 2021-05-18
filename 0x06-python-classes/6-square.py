@@ -2,7 +2,7 @@
 """Defines the square class"""
 
 
-class Sqaure:
+class Square:
     """Square class with a private instance attribute size"""
     def __init__(self, size=0, position=(0, 0)):
         """Initializes the Square class"""
