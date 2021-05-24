@@ -4,11 +4,20 @@
 
 class Rectangle:
     """A rectangle class"""
+    number_of_instances = 0
+    print_symbol = '#'
 
     def __init__(self, width=0, height=0):
         """Initializes the rectangle"""
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
+
+    def __del__(self):
+        """Delete a rectangle"""
+        print("Bye rectangle...")
+        if Rectangle.number_of_instances != 0:
+            Rectangle.number_of_instances -= 1
 
     @property
     def width(self):
@@ -38,6 +47,21 @@ class Rectangle:
             raise ValueError("height must be >= 0")
         self.__height = height
 
+    def __str__(self):
+        """Returns rectangle string"""
+        if self.width == 0 or self.height == 0:
+            return ""
+        string = ""
+        for y in range(self.height - 1):
+            string += str(self.print_symbol) * self.width + '\n'
+        string += str(self.print_symbol) * self.width
+        return string
+
+    def __repr__(self):
+        """Returns repr of the rectangle"""
+        string = "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"
+        return string
+
     def area(self):
         """Returns the area of the rectangle"""
         return self.height * self.width
@@ -47,3 +71,13 @@ class Rectangle:
         if self.rectangle == 0 or self.width == 0:
             return 0
         return self.height * 2 + self.width * 2
+
+    def bigger_or_equal(rect_1, rect_2):
+        """Returns the greater of rect1 and rect2, rect1 if equal"""
+        if type(rect_1) is not Rectangle:
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if type(rect_2) is not Rectangle:
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_2.area() > rect_1.area():
+            return rect_2
+        return rect_1
