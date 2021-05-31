@@ -12,4 +12,4 @@ class MyInt(int):
         return int1.myint != int2
 
     def __ne__(int1, int2):
-        retyrb int1.myint == int2
+        return int1.myint == int2
