@@ -3,6 +3,5 @@
 
 
 def inherits_from(obj, a_class):
-    if type(obj) == a_class:
-        return False
-    return isinstance(obj, a_class)
+    if obj.__class__ is not a_class:
+        return isinstance(obj, a_class)
