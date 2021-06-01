@@ -4,5 +4,5 @@
 
 def append_write(dilename="", text=""):
     """writes a string to a given file"""
-    with open(filename, "a") as f:
+    with open(filename, mode="a", encoding='utf-8') as f:
         return f.write(text)
