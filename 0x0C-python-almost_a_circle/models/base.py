@@ -17,7 +17,7 @@ class Base:
 
     def to_json_string(list_dictionaries):
         """Returns a json string made out of the dictionaries"""
-        if list_dictionaries is NOne or len(list_dictionaries) == 0:
+        if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         return json.dumps(list_dictionaries)
 
@@ -94,7 +94,7 @@ class Base:
                     newlist.append(dicty["x"])
                     newlist.append(dicty["y"])
                     csvwriter.writerow(newlist)
-        if cls is Aquare:
+        if cls is Square:
             with open("Square.csv", "w") as f:
                 csvwriter = csv.writer(f)
                 for dicty in listcpy:
@@ -125,5 +125,5 @@ class Base:
                 for row in csvreader:
                     newsquare = Square(int(row[1]), int(row[2]),
                                        int(row[3]), row[0])
-                    retlist.append(newsqaure)
+                    retlist.append(newsquare)
                 return retlist
