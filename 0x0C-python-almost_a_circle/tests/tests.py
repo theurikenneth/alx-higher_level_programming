@@ -288,13 +288,11 @@ class TestRectangle(unittest.TestCase):
         a.update(11, 5, 6, 15, 12)
         self.assertEqual(str(a), "[Rectangle] (11) 15/12 - 5/6")
 
-
     def testupdatetoomany(self):
         """Test rectangle update function with extra args"""
         a = Rectangle(4, 3, 6, 7, 3)
         a.update(11, 5, 6, 15, 12, [], "hello", ())
         self.assertEqual(str(a), "[Rectangle] (11) 15/12 - 5/6")
-
     
     def testtodict(self):
         """Tests rectangle to dictionary function"""
