@@ -42,6 +42,6 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """Returns a dictionary of the Rectangle instance's attributes"""
-        newdict = {"id": self.id, "size":self.width,
+        newdict = {"id": self.id, "size": self.width,
                    "x": self.x, "y": self.y}
         return newdict
