@@ -69,9 +69,14 @@ class TestBase(unittest.TestCase):
     def testtojson(self):
         """Test Base to_json_string class method"""
         dicty = {"id": 5, "class": "string", "list": [], "set":{}}
+        self.assertEqual(json.dumps([dicty, dicty]), Base.to_json_string([dicty]))
+
+    def testtojson2(self):
+        """Test Base to_json_string class method with multiple dicts"""
+        dicty = {"id": 5, "class": "string", "list": [], "set":{}}
         self.assertEqual(json.dumps([dicty, dicty]),
                          Base.to_json_string([dicty, dicty]))
-
+                                                                                                                        
     def testojsonempty(self):
         """Test Base to_json_string class method with empty list of dicts"""
         self.assertEqual("[]", Base.to_json_string([]))
