@@ -12,6 +12,7 @@ from models.square import Square
 idct = 0
 nonintegers = [3.5, [], {}, {1, 2}, {1: 2, 3: 4}, "hi", b"hi", ()]
 
+
 class TestBase(unittest.TestCase):
     """Test cases for Base geometry class"""
 
@@ -68,15 +69,16 @@ class TestBase(unittest.TestCase):
 
     def testtojson(self):
         """Test Base to_json_string class method"""
-        dicty = {"id": 5, "class": "string", "list": [], "set":{}}
-        self.assertEqual(json.dumps([dicty, dicty]), Base.to_json_string([dicty]))
+        dicty = {"id": 5, "class": "string", "list": [], "set": {}}
+        self.assertEqual(json.dumps([dicty, dicty]),
+                         Base.to_json_string([dicty]))
 
     def testtojson2(self):
         """Test Base to_json_string class method with multiple dicts"""
-        dicty = {"id": 5, "class": "string", "list": [], "set":{}}
+        dicty = {"id": 5, "class": "string", "list": [], "set": {}}
         self.assertEqual(json.dumps([dicty, dicty]),
                          Base.to_json_string([dicty, dicty]))
-                                                                                                                        
+
     def testojsonempty(self):
         """Test Base to_json_string class method with empty list of dicts"""
         self.assertEqual("[]", Base.to_json_string([]))
@@ -116,7 +118,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(a.x, b.x)
         self.assertEqual(a.y, b.y)
 
-#test fewer args to inits
+
+# test fewer args to inits
 class TestRectangle(unittest.TestCase):
     """Tests the rectangle class"""
 
@@ -212,7 +215,7 @@ class TestRectangle(unittest.TestCase):
                     Rectangle(4, ele)
                 self.assertEqual(e.exception.args[0],
                                  "height must be an integer")
-                                                  
+
     def testxtype(self):
         """Test invalid types for x"""
         for ele in notintegers:
@@ -229,8 +232,8 @@ class TestRectangle(unittest.TestCase):
                 with self.assertRaises(TypeError) as e:
                     Rectangle(4, 5, 6, ele)
                 self.assertEqual(e.exception.args[0],
-                                 "y must be an integer")  
-    
+                                 "y must be an integer")
+
     def testarea(self):
         """Tests rectangle area function"""
         gloabl idct
@@ -261,19 +264,18 @@ class TestRectangle(unittest.TestCase):
             a.display()
         self.assertEqual(out.getvalue(), "\n\n\n\n   ####\n   ####\n   ####\n")
 
-    
     def teststr(self):
         """Tests stringing a basic rectangle"""
         gloabl idct
         a = Rectangle(4, 3)
-        idct _= 1
+        idct += 1
         self.assertEqual(str(a), "[Rectangle] ({}) 0/0 - 4/3".format(idct))
 
     def teststr2(self):
         """Tests stringing a rectangle with offset"""
         a = Rectangle(4, 3, 6, 7, 3)
-        self.assertEqual(str(a), "[Rectangle] (3) 6/7 - 4/3") 
-                                                
+        self.assertEqual(str(a), "[Rectangle] (3) 6/7 - 4/3")
+
     def testupdate(self):
         """Tests rectangle update function with positional args"""
         a = Rectangle(4, 3, 6, 7, 3)
@@ -293,14 +295,15 @@ class TestRectangle(unittest.TestCase):
         a = Rectangle(4, 3, 6, 7, 3)
         a.update(11, 5, 6, 15, 12, [], "hello", ())
         self.assertEqual(str(a), "[Rectangle] (11) 15/12 - 5/6")
-    
+
     def testtodict(self):
         """Tests rectangle to dictionary function"""
         a = Rectangle(4, 3, 6, 7, 3)
         dictcomp = {"id": 3, "width": 4, "height": 3, "x": 6, "y": 7}
         self.assertEqual(a.to_dictionary(), dictcomp)
 
-#test fewer args to inits
+
+# test fewer args to inits
 class TestSquare(unittest.TestCase):
     """Tests the square class"""
 
@@ -323,7 +326,7 @@ class TestSquare(unittest.TestCase):
         """Tries a zero width"""
         with self.assertRaises(ValueError) as e:
             a = Square(0)
-        self.assertEqual(e.exception.args[0], "width must be > 0") 
+        self.assertEqual(e.exception.args[0], "width must be > 0")
 
     def testsqwithx(self):
         """Make a square with only an x position"""
