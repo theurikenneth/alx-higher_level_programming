@@ -356,4 +356,14 @@ class TestSquare(unittest.TestCase):
         """Tries a negative y"""
         with self.assertRaises(ValueError) as e:
             a = Square(10, 1, -1)
-        self.assertEqual(e.exception.args[0], "y must be >= 0")    
+        self.assertEqual(e.exception.args[0], "y must be >= 0")
+
+    def testid(self):
+        """Test square construction givem an id"""
+        a = Square(1, 2, 3, 4)
+        self.assertEqual(a.id, 4)
+        self.assertEqual(a.width, 1)
+        self.assertEqual(a.height, 1)
+        self.assertEqual(a.x, 2)
+        self.assertEqual(a.y, 3)
+
