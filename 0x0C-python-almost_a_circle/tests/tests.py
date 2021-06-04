@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""Unitest module from Base, Square and Rectangle classes"""
-import unitest
+"""Unittest module from Base, Square and Rectangle classes"""
+import unittest
 import json
 from io import StringIO
 from contextlib import redirect_stdout
