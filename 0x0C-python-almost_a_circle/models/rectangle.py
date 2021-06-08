@@ -1,110 +1,163 @@
 #!/usr/bin/python3
-"""Rectangle class"""
-from .base import Base
+"""
+...
+"""
+
+from models.base import Base
 
 
 class Rectangle(Base):
-    """Rectangle class
-
-    Attributes:
-    width - width of Rectangle
-    height - height of Rectangle
-    x - x coordinate of top left vertex of Rectangle
-    y - y coordinate of top left vertex of Rectangle
+    """
+    ...
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
+        """
+        ...
+        """
         super().__init__(id)
 
-    def __str__(self):
-        return "[Rectangle] ({}) {}/{} - {}/{}".\
-            format(self.id, self.x, self.y, self.width, self.height)
+        self.check_integer_parameter(width, 'width')
+        self.check_integer_parameter(height, 'height')
+        self.check_integer_parameter(x, 'x')
+        self.check_integer_parameter(y, 'y')
+
+        self.__width = width
+        self.__height = height
+        self.__x = x
+        self.__y = y
 
     @property
     def width(self):
+        """
+        ...
+        """
         return self.__width
 
     @width.setter
-    def width(self, width):
-        if type(width) is not int:
-            raise TypeError("width must be an integer")
-        if width < 1:
-            raise ValueError("width must be > 0")
-        self.__width = width
+    def width(self, param):
+        """
+        ...
+        """
+        self.check_integer_parameter(param, 'width')
+
+        self.__width = param
 
     @property
     def height(self):
+        """
+        ...
+        """
         return self.__height
 
     @height.setter
-    def height(self, height):
-        if type(height) is not int:
-            raise TypeError("height must be an integer")
-        if height < 1:
-            raise ValueError("height must be > 0")
-        self.__height = height
+    def height(self, param):
+        """
+        ...
+        """
+        self.check_integer_parameter(param, 'height')
+
+        self.__height = param
 
     @property
     def x(self):
+        """
+        ...
+        """
         return self.__x
 
     @x.setter
-    def x(self, x):
-        if type(x) is not int:
-            raise TypeError("x must be an integer")
-        if x < 0:
-            raise ValueError("x must be >= 0")
-        self.__x = x
+    def x(self, param):
+        """
+        ...
+        """
+        self.check_integer_parameter(param, 'x')
+
+        self.__x = param
 
     @property
     def y(self):
+        """
+        ...
+        """
         return self.__y
 
     @y.setter
-    def y(self, y):
-        if type(y) is not int:
-            raise TypeError("y must be an integer")
-        if y < 0:
-            raise ValueError("y must be >= 0")
-        self.__y = y
+    def y(self, param):
+        """
+        ...
+        """
+        self.check_integer_parameter(param, 'y')
+
+        self.__y = param
+
+    def check_integer_parameter(self, value, param):
+        """
+        ...
+        """
+        if type(value) is not int:
+            raise TypeError(param + ' must be an integer')
+
+        if value <= 0 and param in ('width', 'height'):
+            raise ValueError(param + ' must be > 0')
+
+        if value < 0 and param in ('x', 'y'):
+            raise ValueError(param + ' must be >= 0')
 
     def area(self):
-        """Returns area of a Rectangle"""
-        return self.width * self.height
+        """
+        ...
+        """
+        return self.__width * self.__height
 
     def display(self):
-        """Prints rectangle made of #"""
-        for y in range(self.y):
-            print()
-        for h in range(self.height):
-            print(" " * self.x, end="")
-            print("#" * self.width)
+        """
+        ...
+        """
+        if self.__y > 0:
+            print('\n' * self.__y, end='')
+
+        for i in range(self.height):
+            if self.__x > 0:
+                print(' ' * self.__x, end='')
+
+            print('#' * self.__width)
+
+    def __str__(self):
+        """
+        ...
+        """
+        return '[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}'.format(
+            self.id, self.x, self.y, self.width, self.height
+        )
 
     def update(self, *args, **kwargs):
-        """Updates Rectangle attributes. In the following order if positional:
-        id, width, height, x, y
         """
-        numargs = len(args)
-        if numargs > 0:
-            self.id = args[0]
-        if numargs > 1:
-            self.width = args[1]
-        if numargs > 2:
-            self.height = args[2]
-        if numargs > 3:
-            self.x = args[3]
-        if numargs > 4:
-            self.y = args[4]
-        if numargs == 0:
-            for key, value in kwargs.items():
-                exec("self.{} = {}".format(key, value))
+        ...
+        """
+        argc = len(args)
+        kwargc = len(kwargs)
+        modif_attrs = ['id', 'width', 'height', 'x', 'y']
+
+        if argc > 5:
+            argc = 5
+
+        if argc > 0:
+            for i in range(argc):
+                setattr(self, modif_attrs[i], args[i])
+        elif kwargc > 0:
+            for k, v in kwargs.items():
+                if k in modif_attrs:
+                    setattr(self, k, v)
 
     def to_dictionary(self):
-        """Returns a dictionary of the Rectangle instance's attributes"""
-        newdict = {"id": self.id, "width": self.width, "height": self.height,
-                   "x": self.x, "y": self.y}
-        return newdict
+        """
+        ...
+        """
+        return {
+            'id': self.id,
+            'width': self.width,
+            'height': self.height,
+            'x': self.x,
+            'y': self.y
+        }
