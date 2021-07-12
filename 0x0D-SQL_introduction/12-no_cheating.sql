@@ -2,5 +2,5 @@
 -- table 'second_table' in MySQL Server
 -- using the name not the id
 UPDATE second_table
-SET 'score' = '10'
-WHERE 'name' = 'Bob';
+SET score = 10
+WHERE name = 'Bob';
