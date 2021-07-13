@@ -1,4 +1,5 @@
--- Lists all Comedy shows in the database hbtn_0d_tvshows
+-- Lists all Comedy shows in the database 
+-- hbtn_0d_tvshows
 
 SELECT tv_shows.title AS title 
 FROM tv_shows
