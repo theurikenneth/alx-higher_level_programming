@@ -1,10 +1,16 @@
 #!/usr/bin/node
+const intRegex = /^[0-9]*?.[0-9]*$/;
+const a = process.argv[2];
 
-function factroial (n) {
-    if (isNaN(n) || n < 2) {
-	return 1;
-    } else {
-	return n * factorial(n - 1);
-    }
+function factorial (a) {
+  if (a === 0) {
+    return 1;
+  }
+  return a * factorial(a - 1);
 }
-console.log(factorial(process.argv[2]));
+
+if (intRegex.test(a)) {
+  console.log(factorial(parseInt(a)));
+} else {
+  console.log(1);
+}
