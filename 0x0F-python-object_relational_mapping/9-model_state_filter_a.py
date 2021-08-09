@@ -8,14 +8,17 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import func
 
 if __name__ == "__main__":
+    sql_username = sys.argv[1]
+    sql_pwd = sys.argv[2]
+    db_name = sys.argv[3]
+
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost:3306/{}'
-        .format(argv[1], argv[2], argv[3]), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
+        .format(sql_username, sql_pwd, db_name), pool_pre_ping=True)
 
     Session = sessionmaker(bind=engine)
     session = Session()
-    for state in session.query(State).
-    filter(State.name.contains(func.binary("a"))):
+    query = session.query(State).filter(State.name.like("%a%"))
+    for state in query.order_by(State.id).all():
         print("{}: {}".format(state.id, state.name))
     session.close()
