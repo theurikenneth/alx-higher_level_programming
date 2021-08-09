@@ -5,6 +5,7 @@ from sys import argv
 from model_state import Base, State
 from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import func
 
 if __name__ == "__main__":
     engine = create_engine(
@@ -15,6 +16,6 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
     for state in session.query(State).
-    filter(State.name.like('%a%')).order_by(State.id).all():
+    filter(State.name.contains(func.binary("a"))):
         print("{}: {}".format(state.id, state.name))
     session.close()
