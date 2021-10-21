@@ -1,7 +1,9 @@
+// fetches and prints how to say \"Hello\" depending on the language 
+
 $(document).ready(() => {
   function update () {
     const lang = $('input#language_code').val();
-    $.getJSON(`https://www.fourtonfish.com/hellosalut/?lang=${lang}`, (data) => {
+    $.getJSON(`https://www.fourtonfish.com/hellosalut/hello, (data) => {
       $('div#hello').html(data.hello);
     });
   }
