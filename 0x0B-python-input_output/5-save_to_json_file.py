@@ -6,5 +6,5 @@ import json
 def save_to_json_file(my_obj, filename):
     if filename is None:
         return
-    with open(filename, mode="w", encoding='UTF-8') as f:
-        json_var = json.dump(my_obj, f)
+    with open(filename, "w") as f:
+        f.write(my_obj, f)
